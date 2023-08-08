@@ -7,7 +7,7 @@ import UrlIcon from "~/components/UrlIcon";
 import { api } from "~/utils/api";
 import createURL from "~/utils/createURL";
 
-import thumbnail from "~/public/thumbnail.jpg";
+import thumbnail from "public/thumbnail.jpg";
 
 export default function Home() {
   // const { data: urls, isLoading } = api.url.getAll.useQuery();
