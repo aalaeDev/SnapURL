@@ -2,6 +2,8 @@
 
 Welcome to SnapURL, your convenient URL shortening solution powered by the T3 Stack.
 
+![thumbnail](https://snapurl.vercel.app/_next/static/media/thumbnail.22dc8924.jpg)
+
 ## Overview
 
 SnapURL is a web application designed to simplify the sharing and tracking of links. By transforming lengthy URLs into compact and shareable links, SnapURL streamlines your online communication. With a stack built on cutting-edge technologies, including:
