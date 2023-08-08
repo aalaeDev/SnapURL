@@ -41,7 +41,7 @@ You can deploy SnapURL with ease using various platforms:
 
 ## Contributing
 
-We welcome your feedback and contributions to SnapURL! If you encounter issues or have suggestions for improvements, please open an issue or submit a pull request to the [SnapURL GitHub repository](https://github.com/aalaedev/snapurl).
+We welcome your feedback and contributions to SnapURL! If you encounter issues or have suggestions for improvements, please open an issue or submit a pull request to the [SnapURL GitHub repository](https://github.com/aalaeDev/SnapURL).
 
 ## License
 

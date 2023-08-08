@@ -84,14 +84,14 @@ export default function Home() {
         <footer className="fixed bottom-4 text-xs text-neutral-200">
           Developed by{" "}
           <Link
-            href="#"
+            href="https://github.com/aalaeDev"
             className="underline duration-200 hover:text-neutral-100"
           >
             aalaedev
           </Link>
           . The source code is on{" "}
           <Link
-            href="#"
+            href="https://github.com/aalaeDev/SnapURL"
             className="underline duration-200 hover:text-neutral-100"
           >
             GitHub
