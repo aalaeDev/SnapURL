@@ -5,7 +5,6 @@ export default {
   theme: {
     colors: {
       transparent: "transparent",
-      discord: "#5865F2",
       main: { DEFAULT: "#24A1FC" },
       neutral: {
         100: "#FBFBFA",

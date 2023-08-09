@@ -11,26 +11,24 @@ datasource db {
 }
 
 model Url {
-    id          String        @id @default(uuid())
+    id          String    @id @default(uuid())
     originalUrl String
     shortUrl    String
-    urlCode     String        @unique
-    createdAt   DateTime      @default(now())
-    updatedAt   DateTime      @updatedAt
-    UrlAnalytic UrlAnalytic[]
+    urlCode     String    @unique
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    clicks      Int
+    visitors    Visitor[]
 }
 
-model UrlAnalytic {
-    id          String     @id @default(uuid())
-    url         Url        @relation(fields: [url_id], references: [id])
-    url_id      String     @unique
-    clicked     Int
-    IpAddresses IpAdress[]
-}
-
-model IpAdress {
-    id          String        @id @default(uuid())
-    ip          String
-    visitedAt   DateTime      @default(now())
-    UrlAnalytic UrlAnalytic[]
+model Visitor {
+    id        String   @id @default(uuid())
+    ip        String?
+    visitedAt DateTime @default(now())
+    country   String?
+    region    String?
+    city      String?
+    isp       String?
+    Url       Url?     @relation(fields: [urlId], references: [id])
+    urlId     String?
 }

@@ -1,9 +1,9 @@
 import { type GetServerSidePropsContext } from "next";
-import React from "react";
 import superjson from "superjson";
 import { prisma } from "~/server/db";
 import { createServerSideHelpers } from "@trpc/react-query/server";
 import { appRouter } from "~/server/api/root";
+import { type IPAddressInfo } from "~/types";
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext<{ id: string }>
@@ -35,6 +35,40 @@ export async function getServerSideProps(
       },
     };
   }
+
+  const visitor = await fetch("http://ip-api.com/json/?fields=61439")
+    .then((response) => {
+      if (!response.ok) {
+        return undefined;
+      }
+      return response.json();
+    })
+    .then((data: IPAddressInfo) => {
+      return data;
+    })
+    .catch((_) => {
+      return undefined;
+    });
+
+  await prisma.visitor.create({
+    data: {
+      ip: visitor?.query,
+      city: visitor?.city,
+      country: visitor?.country,
+      region: visitor?.regionName,
+      isp: visitor?.isp,
+      urlId: url.id,
+    },
+  });
+
+  await prisma.url.update({
+    where: {
+      id: url.id,
+    },
+    data: {
+      clicks: url.clicks + 1,
+    },
+  });
 
   return {
     redirect: {
