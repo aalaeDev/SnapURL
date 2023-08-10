@@ -18,9 +18,6 @@ export const urlRouter = createTRPCRouter({
           shortUrl: input.shortUrl,
           clicks: 0,
         },
-        select: {
-          shortUrl: true,
-        },
       });
     }),
   getAll: publicProcedure.query(({ ctx }) => {
@@ -30,7 +27,6 @@ export const urlRouter = createTRPCRouter({
     .input(
       z.object({
         urlCode: z.string(),
-        cursor: z.string().optional(),
       })
     )
     .query(({ ctx, input }) => {

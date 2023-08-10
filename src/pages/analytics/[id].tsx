@@ -8,6 +8,8 @@ import Seo from "~/components/common/Seo";
 import Link from "next/link";
 import VisitorsTable from "~/components/VisitorsTable";
 import React from "react";
+import Loader from "~/components/Icons/Loader";
+import { cutString } from "~/utils/cutString";
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext<{ id: string }>
@@ -52,10 +54,11 @@ const Analytics: NextPage<{ urlCode: string }> = ({ urlCode }) => {
   const {
     data: url,
     isLoading,
-    isError,
+    // isError,
+    isRefetching,
   } = api.url.getByUrlCode.useQuery({ urlCode });
 
-  if ((!url && !isLoading) || isError) return <>Error Occurred!</>;
+  // if ((!url && !isLoading) || isError) return <>Error Occurred!</>;
   if (isLoading) return <>Loading!</>;
   // if (isFetching) return <>Fetching!</>;
 
@@ -73,7 +76,9 @@ const Analytics: NextPage<{ urlCode: string }> = ({ urlCode }) => {
         <div className="flex justify-between rounded-md border border-neutral-600 p-4 ">
           <div className="flex gap-3 ">
             Url Code:{" "}
-            <span className="font-normal text-neutral-200">{url.urlCode}</span>
+            <span className="font-normal text-neutral-200">
+              {cutString(urlCode, 30)}
+            </span>
           </div>
           <div className="flex gap-3">
             Original Url:{" "}
@@ -81,14 +86,19 @@ const Analytics: NextPage<{ urlCode: string }> = ({ urlCode }) => {
               href={url.originalUrl}
               className="font-normal text-neutral-200 hover:underline"
             >
-              {url.originalUrl.length > 40
-                ? url.originalUrl.substring(0, 40) + "..."
-                : url.originalUrl}
+              {cutString(url.originalUrl, 40)}
             </Link>
           </div>
           <div className="flex gap-3">
             Visits:{" "}
             <span className="font-normal text-neutral-200">{url.clicks}</span>
+          </div>
+
+          <div className="flex gap-3">
+            Status:{" "}
+            <span className="flex items-center font-normal text-neutral-200">
+              {isRefetching ? <Loader className="h-4 w-4" /> : "Up to date."}
+            </span>
           </div>
         </div>
 

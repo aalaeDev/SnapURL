@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "@radix-ui/themes";
 import moment from "moment";
 import { api } from "~/utils/api";
+import Loader from "./Icons/Loader";
 
 // interface Visitor {
 //   id: string;
@@ -24,13 +25,19 @@ const LIMIT = 15;
 export default function VisitorsTable({ urlId }: VisitorsTableProps) {
   const [page, setPage] = React.useState(0);
 
-  const { data, isLoading, fetchNextPage, hasNextPage } =
-    api.visitor.getAll.useInfiniteQuery(
-      { urlId, limit: LIMIT },
-      {
-        getNextPageParam: (lastPage) => lastPage.nextCursor,
-      }
-    );
+  const {
+    data,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetchingPreviousPage,
+  } = api.visitor.getAll.useInfiniteQuery(
+    { urlId, limit: LIMIT },
+    {
+      getNextPageParam: (lastPage) => lastPage.nextCursor,
+    }
+  );
 
   const visitors = data?.pages[page]?.visitors;
   const end = data?.pages.length ?? 0;
@@ -50,10 +57,15 @@ export default function VisitorsTable({ urlId }: VisitorsTableProps) {
     setPage((prev) => prev - 1);
   };
 
-  if (isLoading) return <>Loading...</>;
+  if (isLoading)
+    return (
+      <div className=" flex grow items-center justify-center">
+        <Loader className="text-neutral-200" />
+      </div>
+    );
 
   return (
-    <div className="flex flex-col gap-6 pb-10">
+    <div className="flex h-full flex-col gap-6 pb-10">
       <Table.Root>
         <Table.Header>
           <Table.Row>
@@ -71,7 +83,9 @@ export default function VisitorsTable({ urlId }: VisitorsTableProps) {
           </Table.Row>
         </Table.Header>
 
-        {visitors && visitors.length > 0 ? (
+        {!(isFetchingNextPage || isFetchingPreviousPage) &&
+        visitors &&
+        visitors.length > 0 ? (
           <Table.Body>
             {visitors.map((visitor) => (
               <Table.Row
@@ -100,6 +114,12 @@ export default function VisitorsTable({ urlId }: VisitorsTableProps) {
           </Table.Body>
         ) : null}
       </Table.Root>
+
+      {isFetchingNextPage || isFetchingPreviousPage ? (
+        <div className=" flex grow items-center justify-center">
+          <Loader className="text-neutral-200" />
+        </div>
+      ) : null}
 
       <div className="flex justify-end gap-4">
         <button
