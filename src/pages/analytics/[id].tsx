@@ -7,6 +7,7 @@ import { api } from "~/utils/api";
 import Seo from "~/components/common/Seo";
 import Link from "next/link";
 import VisitorsTable from "~/components/VisitorsTable";
+import React from "react";
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext<{ id: string }>
@@ -28,7 +29,16 @@ export async function getServerSideProps(
     };
   }
 
-  await ssr.url.getByUrlCode.prefetch({ urlCode });
+  const url = await ssr.url.getByUrlCode.fetch({ urlCode });
+
+  if (!url) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
@@ -42,7 +52,6 @@ const Analytics: NextPage<{ urlCode: string }> = ({ urlCode }) => {
   const {
     data: url,
     isLoading,
-    // isFetching,
     isError,
   } = api.url.getByUrlCode.useQuery({ urlCode });
 
@@ -56,7 +65,7 @@ const Analytics: NextPage<{ urlCode: string }> = ({ urlCode }) => {
     <>
       <Seo title="Analytics" />
 
-      <main className="mx-auto flex h-screen w-screen max-w-6xl flex-col gap-4 bg-neutral-900 p-6 pb-6 text-neutral-100">
+      <main className="mx-auto flex h-screen w-screen max-w-6xl flex-col gap-4 bg-neutral-900 p-6 text-neutral-100">
         <h1 className="text-4xl font-bold">
           SnapURL <span className="text-lg font-normal">Analytics</span>
         </h1>
@@ -83,7 +92,7 @@ const Analytics: NextPage<{ urlCode: string }> = ({ urlCode }) => {
           </div>
         </div>
 
-        <VisitorsTable visitors={url.visitors} />
+        <VisitorsTable urlId={url.id} />
 
         <footer className="fixed bottom-4 left-1/2  -translate-x-1/2 text-xs text-neutral-200">
           Developed by{" "}

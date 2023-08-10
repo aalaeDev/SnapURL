@@ -30,5 +30,5 @@ model Visitor {
     city      String?
     isp       String?
     Url       Url?     @relation(fields: [urlId], references: [id])
-    urlId     String?
+    urlId   String?
 }
