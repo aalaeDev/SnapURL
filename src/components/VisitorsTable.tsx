@@ -106,7 +106,7 @@ export default function VisitorsTable({ urlId }: VisitorsTableProps) {
           className={`${
             hasPrev
               ? "text-neutral-100"
-              : "pointer-entents-none text-neutral-600"
+              : "pointer-events-none text-neutral-600"
           } hover:underline`}
           onClick={handleFetchPreviousPage}
         >
@@ -116,7 +116,7 @@ export default function VisitorsTable({ urlId }: VisitorsTableProps) {
           className={`${
             hasNext
               ? "text-neutral-100"
-              : "pointer-entents-none text-neutral-600"
+              : "pointer-events-none text-neutral-600"
           } hover:underline`}
           onClick={handleFetchNextPage}
         >
