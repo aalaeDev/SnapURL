@@ -46,4 +46,27 @@ export const urlRouter = createTRPCRouter({
         },
       });
     }),
+  createVisitor: publicProcedure
+    .input(
+      z.object({
+        ip: z.string().optional(),
+        city: z.string().optional(),
+        country: z.string().optional(),
+        region: z.string().optional(),
+        isp: z.string().optional(),
+        urlId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return ctx.prisma.visitor.create({
+        data: {
+          ip: input.ip,
+          city: input.city,
+          country: input.country,
+          region: input.region,
+          isp: input.isp,
+          urlId: input.urlId,
+        },
+      });
+    }),
 });
