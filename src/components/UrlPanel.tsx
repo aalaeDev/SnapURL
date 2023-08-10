@@ -41,7 +41,7 @@ export default function UrlPanel({
           <CopyIcon />
         </button>
         <button
-          onClick={() => {}}
+          //   onClick={() => {}}
           className="pointer-events-none rounded-md border border-neutral-600 p-2 text-neutral-200 opacity-50 duration-200 hover:bg-neutral-600 hover:bg-opacity-60"
         >
           <QrIcon />
