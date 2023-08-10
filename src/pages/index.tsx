@@ -76,7 +76,7 @@ export default function Home() {
           </div>
           <button
             onClick={generateURL}
-            className="flex h-10 w-32 items-center justify-center rounded-md bg-neutral-100 text-neutral-900 duration-200 hover:bg-opacity-95 hover:shadow-2xl hover:shadow-neutral-100"
+            className="flex h-12 w-32 items-center justify-center rounded-md bg-neutral-100 text-neutral-900 duration-200 hover:bg-opacity-95 hover:shadow-2xl hover:shadow-neutral-100"
           >
             {createURL_API.isLoading ? (
               <Loader className="h-5 w-5" />

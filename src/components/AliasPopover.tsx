@@ -56,7 +56,7 @@ export default function AliasPopover({
           onClick={() => {
             setIsOpen(!isOpen);
           }}
-          className="flex items-center gap-1 rounded-md border border-neutral-600 bg-neutral-600 bg-opacity-20 px-3 py-2 text-neutral-200 duration-200 hover:bg-opacity-60"
+          className="flex items-center gap-1 rounded-md border border-neutral-600 bg-neutral-600 bg-opacity-20 px-3 py-1 text-neutral-200 duration-200 hover:bg-opacity-60"
         >
           alias
           {validAlias && ": "}
