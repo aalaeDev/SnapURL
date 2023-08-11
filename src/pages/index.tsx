@@ -45,7 +45,7 @@ export default function Home() {
     if (!newURL) return;
 
     createURL_API.mutate({ ...newURL });
-
+    setAlias("");
     // inputRef.current.value = "";
   }
   return (

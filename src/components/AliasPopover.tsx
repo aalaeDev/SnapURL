@@ -15,7 +15,7 @@ export default function AliasPopover({
   defaultAlias,
 }: AliasPopoverProps) {
   const [alias, setAlias] = React.useState<string>(defaultAlias);
-  const [validAlias, setValidAlias] = React.useState<string>(defaultAlias);
+  // const [validAlias, setValidAlias] = React.useState<string>(defaultAlias);
   const [isValid, setIsValid] = React.useState<boolean>(true);
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -36,12 +36,12 @@ export default function AliasPopover({
     if (url) {
       setIsValid(false);
       updateAlias("");
-      setValidAlias("");
+      // setValidAlias("");
       return;
     }
 
     updateAlias(alias);
-    setValidAlias(alias);
+    // setValidAlias(alias);
     setIsValid(true);
     setIsOpen(false);
   }
@@ -59,9 +59,9 @@ export default function AliasPopover({
           className="flex items-center gap-1 rounded-md border border-neutral-600 bg-neutral-600 bg-opacity-20 px-3 py-1 text-neutral-200 duration-200 hover:bg-opacity-60"
         >
           alias
-          {validAlias && ": "}
+          {defaultAlias && ": "}
           <span className="font-medium">
-            {validAlias ? cutString(validAlias, 8) : ""}
+            {defaultAlias ? cutString(defaultAlias, 8) : ""}
           </span>
           <ChevronDown />
         </button>
