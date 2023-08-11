@@ -21,7 +21,7 @@ export default function AliasPopover({
 
   const { refetch, isFetching } = api.url.getByUrlCode.useQuery(
     { urlCode: encodeURIComponent(alias) },
-    { enabled: false }
+    { enabled: false, staleTime: 800 }
   );
 
   function closePopover() {
@@ -114,7 +114,9 @@ export default function AliasPopover({
 
           <button
             onClick={() => void changeAlias()}
-            className="flex h-8 w-12 items-center justify-center self-end rounded-md bg-neutral-100 text-sm text-neutral-900 duration-200 hover:bg-opacity-95 hover:shadow-lg hover:shadow-neutral-400"
+            className={`${
+              isFetching ? "pointer-events-none opacity-50" : ""
+            } flex h-8 w-12 items-center justify-center self-end rounded-md bg-neutral-100 text-sm text-neutral-900 duration-200 hover:bg-opacity-95 hover:shadow-lg hover:shadow-neutral-400`}
           >
             {isFetching ? <Loader className="h-4 w-4" /> : "Set"}
           </button>

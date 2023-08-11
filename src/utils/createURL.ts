@@ -1,4 +1,5 @@
 import { isWebUri } from "valid-url";
+
 import generateShortURL from "~/utils/generateShortURL";
 
 export default function createURL(URL: string, alias?: string) {

@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 import AliasPopover from "~/components/AliasPopover";
 import Loader from "~/components/Icons/Loader";
-import UrlBox from "~/components/UrlBox";
 import UrlIcon from "~/components/Icons/UrlIcon";
 import Seo from "~/components/common/Seo";
 
@@ -52,6 +51,7 @@ export default function Home() {
   return (
     <>
       <Seo />
+
       <main className="flex h-screen flex-col items-center justify-center gap-4 overflow-hidden bg-neutral-900 px-12 py-12">
         <h1 className="mb-8 text-5xl font-bold text-neutral-100">SnapURL</h1>
 

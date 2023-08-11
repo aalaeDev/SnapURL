@@ -10,6 +10,8 @@ import VisitorsTable from "~/components/VisitorsTable";
 import React from "react";
 import Loader from "~/components/Icons/Loader";
 import { cutString } from "~/utils/cutString";
+import CheckIcon from "~/components/Icons/CheckIcon";
+import Tooltip from "~/components/ui/Tooltip";
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext<{ id: string }>
@@ -97,7 +99,15 @@ const Analytics: NextPage<{ urlCode: string }> = ({ urlCode }) => {
           <div className="flex gap-3">
             Status:{" "}
             <span className="flex items-center font-normal text-neutral-200">
-              {isRefetching ? <Loader className="h-4 w-4" /> : "Up to date."}
+              {isRefetching ? (
+                <Tooltip content="Checking for updates..." position="top-6">
+                  <Loader className="h-4 w-4" />
+                </Tooltip>
+              ) : (
+                <Tooltip content="Up to date." position="top-6">
+                  <CheckIcon className="h-4 w-4" />
+                </Tooltip>
+              )}
             </span>
           </div>
         </div>

@@ -36,6 +36,7 @@ export default function VisitorsTable({ urlId }: VisitorsTableProps) {
     { urlId, limit: LIMIT },
     {
       getNextPageParam: (lastPage) => lastPage.nextCursor,
+      staleTime: 800,
     }
   );
 
