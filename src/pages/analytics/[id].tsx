@@ -58,7 +58,7 @@ const Analytics: NextPage<{ urlCode: string }> = ({ urlCode }) => {
     isLoading,
     // isError,
     isRefetching,
-  } = api.url.getByUrlCode.useQuery({ urlCode });
+  } = api.url.getByUrlCode.useQuery({ urlCode }, { refetchInterval: 6000 });
 
   // if ((!url && !isLoading) || isError) return <>Error Occurred!</>;
   if (isLoading) return <>Loading!</>;

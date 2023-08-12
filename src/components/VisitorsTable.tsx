@@ -37,6 +37,7 @@ export default function VisitorsTable({ urlId }: VisitorsTableProps) {
     {
       getNextPageParam: (lastPage) => lastPage.nextCursor,
       staleTime: 800,
+      refetchInterval: 6000,
     }
   );
 
