@@ -2,7 +2,7 @@
 
 Welcome to SnapURL, your convenient URL shortening solution powered by the T3 Stack.
 
-![thumbnail](https://snapurl.vercel.app/_next/static/media/thumbnail.jpg)
+![thumbnail](https://snapurl.vercel.app/thumbnail.jpg)
 
 ## Overview
 
